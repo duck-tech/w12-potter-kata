@@ -6,6 +6,6 @@ export class Basket {
     for(let i = 0; i < orders.length; i++){
       price += perBookPrice
     }
-    return -1 
+    return price
   }
 }
