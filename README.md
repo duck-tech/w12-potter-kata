@@ -1,4 +1,6 @@
 
+[Kata Potter專屬筆記](https://duck-tech.github.io/2022/05/15/%5B%E9%9B%B2%E5%8E%9F%E7%94%9F%E8%BB%9F%E9%AB%94%E9%96%8B%E7%99%BC%5DTDD%20KATA%20POTTER/#more)
+
 
 # W12PotterKata
 
