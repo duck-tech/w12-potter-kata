@@ -7,16 +7,16 @@ export class Basket {
     let price = 0
     this.bookMap = [0, 0, 0, 0, 0]
     this.addOrdersToBookMap(orders)
-
     if (this.getBookCount() < 2) {
       price = orders.length * this.perBookPrice;
-    } else {
+    } 
+    else {
       while (this.checkBookMapLeft()) {
         price += this.perBookPrice * this.getBookCount() *
-          this.discount[this.getBookCount()];
+          this.discount[this.getBookCount()]; 
           this.updateBookMap()
       }
-    }
+     }
     return price
   }
 
@@ -31,8 +31,23 @@ export class Basket {
     this.bookMap.forEach((bookNumber) => {
       if (bookNumber > 0) count++
     })
+    if (count === 5 && this.getSecondCount() === 3) {
+      count = 4 
+    }
     return count;
   }
+
+  private getSecondCount() {
+    let bookMapCopy = []
+    bookMapCopy = [...this.bookMap]
+    let secondCount = 0
+    bookMapCopy.forEach((bookNumber) => {
+      bookNumber = bookNumber - 1
+      if (bookNumber > 0) secondCount ++ 
+    })
+    return secondCount
+  }
+
 
   private checkBookMapLeft() {
     for (let i = 0; i < this.bookMap.length; i++){
@@ -42,11 +57,22 @@ export class Basket {
     }
     return false
   }
-  private updateBookMap() {
-    this.bookMap = this.bookMap.map((bookNumber) => {
-      return bookNumber - 1
-    }) 
-  }
 
   
+  private updateBookMap() {
+    if (this.getBookCount() === 4 && this.getSecondCount() === 3) {
+      let diff = 0
+      for (let i = 0; i < this.bookMap.length; i++){
+        if (this.bookMap[i] > 0) {
+          this.bookMap[i] -= 1
+          diff += 1
+        }
+        if (diff === 4) break
+      }} else {
+      for (let i = 0; i < this.bookMap.length; i++) {
+        this.bookMap[i] -= 1
+      }
+    }
+    return this.bookMap
+  }
 }
