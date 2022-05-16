@@ -11,10 +11,14 @@ export class Basket {
     if (this.getBookCount() < 2) {
       price = orders.length * this.perBookPrice;
     } else {
-      price =
-        this.perBookPrice *
-        this.getBookCount() *
-        this.discount[this.getBookCount()];
+      for (let i = 0; i < this.bookMap.length; i++ ){
+        if (this.bookMap[i] > 0) {
+          price += this.perBookPrice * this.getBookCount() *
+          this.discount[this.getBookCount()];
+          this.updateBookMap()
+          i -= 1
+        }
+      } 
     }
     return price;
   }
@@ -31,5 +35,11 @@ export class Basket {
       if (bookNumber > 0) count++;
     });
     return count;
+  }
+
+  private updateBookMap() {
+    this.bookMap = this.bookMap.map((bookNumber) => {
+      return bookNumber - 1
+    }) 
   }
 }
